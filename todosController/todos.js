@@ -33,6 +33,7 @@ class TodosController {
     }
   }
 
+
   async createTodo(req, res) {
     let newTodo = new Todo(req.body);
     if (!req.body.title) {
@@ -53,9 +54,9 @@ class TodosController {
   }
 
   async updateTodo(req, res){
-    const {id} = req.params;
+    
     const data = req.body;
-
+    const id = req.body._id
     if(!ObjectId.isValid(id) && !id.match(/^[a-fA-F0-9]{24}$/)){
       return res.status(404).send({
         success: 'false',
@@ -79,7 +80,8 @@ class TodosController {
   }
 
   async deleteTodo(req, res){
-    const {id} = req.params;
+    const id = req.body._id
+    console.log(id)
     if(!ObjectId.isValid(id) && !id.match(/^[a-fA-F0-9]{24}$/)){
       return res.status(404).send({
         success: 'false',
