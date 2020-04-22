@@ -80,8 +80,8 @@ class TodosController {
   }
 
   async deleteTodo(req, res){
-    const id = req.body._id
-    console.log(id)
+    const {id} = req.params;
+    
     if(!ObjectId.isValid(id) && !id.match(/^[a-fA-F0-9]{24}$/)){
       return res.status(404).send({
         success: 'false',
